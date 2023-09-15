@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paypal Donation- Payment Gateway Integration | Input Amount</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container-nav">
+        <h1 class="navbar-heading">
+          <a href="/">Payment Gateway Integration</a>
+        </h1>
+      </div>
+    </nav>
+    <div class="credentials">
+      <p class="msg">
+        Please provide a valid email address for invoice delivery.
+      </p>
+      <p class="msg">Currently, our app does not support email validation.</p>
+
+      <form class="amount" method="post" action="/donate">
+        <input
+          type="email"
+          name="email"
+          id="emailInput"
+          placeholder="Enter your Gmail address"
+          oninput="toggleButtonState()"
+        />
+
+        <input
+          type="number"
+          id="donationAmount"
+          name="donationAmount"
+          placeholder="Enter Donation Amount: $"
+          oninput="toggleButtonState()"
+        />
+        <button class="btn" type="submit" id="submitButton" disabled>
+          Proceed to Payment method
+        </button>
+      </form>
+      <p class="msg">
+        Reach out to the developer for sandbox account details if unavailable.
+      </p>
+      <p class="msg">
+        <a href="https://www.linkedin.com/in/zulfiqar-ali-3bb08024b/"
+          >Zulfiqar</a
+        >
+      </p>
+    </div>
+
+    <script>
+      function toggleButtonState() {
+        const donationAmountInput = document.getElementById("donationAmount");
+        const emailInput = document.getElementById("emailInput");
+        const submitButton = document.getElementById("submitButton");
+        const donationAmount = parseFloat(donationAmountInput.value);
+
+        if (
+          !isNaN(donationAmount) &&
+          donationAmount > 0 &&
+          emailInput.value.trim() !== ""
+        ) {
+          submitButton.disabled = false;
+        } else {
+          submitButton.disabled = true;
+        }
+      }
+    </script>
+  </body>
+</html>
